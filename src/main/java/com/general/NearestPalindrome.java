@@ -16,6 +16,7 @@ package com.general;
 /*
  * https://leetcode.com/problems/find-the-closest-palindrome/description/
  * */
+
 public class NearestPalindrome{
     public static void  main(String []args){
         System.out.println(getNearestPalindrome("123"));
