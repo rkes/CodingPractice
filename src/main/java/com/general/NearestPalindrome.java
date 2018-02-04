@@ -13,61 +13,63 @@ package com.general;
 
 	Out of these three palindromes, we can choose the one with a minimum difference from nn. Further, in case of a tie, we need to return the smallest palindrome obtained. For resolving this tie's conflict, we can observe that a tie is possible only if one number is larger than nn and another is lesser than nn. Further, we know that the number bb is obtained by decreasing nn. Thus, in case of conflict between bb and any other number, we need to choose bb. Similarly, cc is obtained by increasing nn. Thus, in case of a tie between cc and any other number, we need to choose the number other than cc.
  * */
+
 /*
  * https://leetcode.com/problems/find-the-closest-palindrome/description/
  * */
 
-public class NearestPalindrome{
-    public static void  main(String []args){
-        System.out.println(getNearestPalindrome("123"));
-    }
-   
-   public static String getNearestPalindrome(String inp){
-	   String defaultCase = getMirrorOfString(inp);
-	   long diff1 = Math.abs(Long.parseLong(inp)-Long.parseLong(defaultCase));
-	   if(diff1 == 0 ){
-		   return inp;
-	   }
-	   StringBuilder case0 = new StringBuilder(inp);
-	   int i=(case0.length()-1)/2;
-	   while(i>=0 && case0.charAt(i)=='0'){
-		   case0.replace(i,i+1,"9");i--;
-	   }
-	   if(i==0 && case0.charAt(i)==1){
-		   case0.delete(0, 1);
-		   int mid = case0.length()/2;
-		   case0.replace(mid, mid+1, "9");
-	   }
-	   else{
-		   case0.replace(i, i+1, ""+((char)(case0.charAt(i)-1)));
-	   }
-	   String case0Str = getMirrorOfString(case0.toString());
-	   StringBuilder case9 = new StringBuilder(inp);
-	   i = (case9.length()-1)/2;
-	   while(i>=0 && case9.charAt(i)=='9'){
-		   case9.replace(i, i+1, "0");i--;
-	   }
-	   if(i<0){
-		   case9.insert(0, "1");
-	   }
-	   else{
-		   case9.replace(i, i+1, ""+((char)(case9.charAt(i)+1)));
-	   }
-	   String case9Str = getMirrorOfString(case9.toString());
-	   long diff2  = Math.abs(Long.valueOf(case0Str)-Long.valueOf(inp));
-	   long diff3 = Math.abs(Long.valueOf(case9Str)-Long.valueOf(inp));
-	   if(diff2 > diff1 ){
-		   if(diff1>diff3)
-			   return case9Str;
-		   else
-			   return defaultCase;
-	   }
-	   return case0Str;
-	   
-   }
-   public static String getMirrorOfString(String inp){
-	   String str = inp.substring(0,(inp.length())/2);
-	   StringBuilder sBuilder = new StringBuilder(str);
-	   return str+(inp.length()%2==1?inp.charAt(inp.length()/2):"")+sBuilder.reverse().toString();
-   }
+public class NearestPalindrome {
+	public static void main(String[] args) {
+		System.out.println(getNearestPalindrome("123"));
+	}
+
+	public static String getNearestPalindrome(String inp) {
+		String defaultCase = getMirrorOfString(inp);
+		long diff1 = Math.abs(Long.parseLong(inp) - Long.parseLong(defaultCase));
+		if (diff1 == 0) {
+			return inp;
+		}
+		StringBuilder case0 = new StringBuilder(inp);
+		int i = (case0.length() - 1) / 2;
+		while (i >= 0 && case0.charAt(i) == '0') {
+			case0.replace(i, i + 1, "9");
+			i--;
+		}
+		if (i == 0 && case0.charAt(i) == 1) {
+			case0.delete(0, 1);
+			int mid = case0.length() / 2;
+			case0.replace(mid, mid + 1, "9");
+		} else {
+			case0.replace(i, i + 1, "" + ((char) (case0.charAt(i) - 1)));
+		}
+		String case0Str = getMirrorOfString(case0.toString());
+		StringBuilder case9 = new StringBuilder(inp);
+		i = (case9.length() - 1) / 2;
+		while (i >= 0 && case9.charAt(i) == '9') {
+			case9.replace(i, i + 1, "0");
+			i--;
+		}
+		if (i < 0) {
+			case9.insert(0, "1");
+		} else {
+			case9.replace(i, i + 1, "" + ((char) (case9.charAt(i) + 1)));
+		}
+		String case9Str = getMirrorOfString(case9.toString());
+		long diff2 = Math.abs(Long.valueOf(case0Str) - Long.valueOf(inp));
+		long diff3 = Math.abs(Long.valueOf(case9Str) - Long.valueOf(inp));
+		if (diff2 > diff1) {
+			if (diff1 > diff3)
+				return case9Str;
+			else if (diff3 > diff1)
+				return defaultCase;
+		}
+		return case0Str;
+
+	}
+
+	public static String getMirrorOfString(String inp) {
+		String str = inp.substring(0, (inp.length()) / 2);
+		StringBuilder sBuilder = new StringBuilder(str);
+		return str + (inp.length() % 2 == 1 ? inp.charAt(inp.length() / 2) : "") + sBuilder.reverse().toString();
+	}
 }
