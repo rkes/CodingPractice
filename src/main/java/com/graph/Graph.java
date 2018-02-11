@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Graph {
-	List<Edge> edges =new ArrayList();;
+	List<Edge> edges =new ArrayList();
 	Map<Integer,Vertex> allVertex = new HashMap<Integer,Vertex>();
 	
 	public Collection<Vertex> allVertexes(){

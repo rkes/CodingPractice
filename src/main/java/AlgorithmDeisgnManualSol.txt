@@ -1,0 +1,9 @@
+The Algorithm Design Manual
+Algorithm Analysis :-
+Interview Problems ::-->
+2-43.) You are given a set S of n numbers. You must pick a subset S′ of k numbers from S such that the probability of each element of S occurring in S′ 
+is equal (i.e., each is selected with probability k/n). You may make only one pass over the numbers. What if n is unknown?
+Ans :- N , which is size of S , Since we take k elements from S , and S' so we can have 2 solution
+	a) Sort S and S' and take k elements and check k elements . But can have worst case scenario.
+	b) We can use priority queue to check k elements.
+	
