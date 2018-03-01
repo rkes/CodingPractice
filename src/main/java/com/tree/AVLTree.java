@@ -16,6 +16,9 @@ public class AVLTree {
 		root = avlTreeImplementation.insert(root , 9);
 		root = avlTreeImplementation.insert(root , 10);
 		root = avlTreeImplementation.insert(root ,11);
+		
+		AVLNode node = avlTreeImplementation.findNode(root, 4);
+		AVLNode suc = avlTreeImplementation.getSucessor(root, 4);
 		System.out.println();
 	}
 

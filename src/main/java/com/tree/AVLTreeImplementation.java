@@ -1,5 +1,5 @@
 package com.tree;
-
+//Code for ADM , Chapter 3, Q 3-7
 public class AVLTreeImplementation {
 	public AVLNode insert(AVLNode root, int key) {
 		if (root == null) {
@@ -31,8 +31,57 @@ public class AVLTreeImplementation {
 			root.right = rotateRight(root.right);
 			return rotateLeft(root);
 		}
+		AVLNode pred = getPredecessor(root,key);
+		if(pred!=null && pred.data < root.data ){
+			root.setMin(pred.data);
+		}
+		AVLNode suc = getSucessor(root,key);
+		if(suc!=null && suc.data > root.data ){
+			root.setMin(suc.data);
+		}
 		return root;
 	}
+	public AVLNode findNode(AVLNode root,int key){
+		if(root == null){
+			return null;
+		}
+		if(root.data > key)
+			return findNode(root.left, key);
+		else if(root.data < key)
+			return findNode(root.right,key);
+		else
+			return root;
+			
+	}
+	public AVLNode getPredecessor(AVLNode root,int key){
+		AVLNode node =findNode(root,key);
+		if(node == null)
+			return null;
+		AVLNode predNode = getPredecessor(root.left);
+		return predNode;
+	}
+	public AVLNode getSucessor(AVLNode root,int key){
+		AVLNode node =findNode(root,key);
+		if(node == null)
+			return null;
+		AVLNode predNode = getSucessor(root.right);
+		return predNode;
+	}
+	public AVLNode getPredecessor(AVLNode root){
+		if(root == null)
+			return null;
+		if(root.right == null)
+			return root;
+		return getPredecessor(root.right);
+	}
+	public AVLNode getSucessor(AVLNode root){
+		if(root == null)
+			return root;
+		if(root.left == null)
+			return root;
+		return getSucessor(root.left);
+	}
+
 	public AVLNode rotateLeft(AVLNode node){
 		AVLNode x = node.right;
 		AVLNode y = x.left;
