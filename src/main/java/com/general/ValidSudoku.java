@@ -45,6 +45,7 @@ public class ValidSudoku {
 			if (!col)
 				break;
 		}
+		return len;
 		
 
 	}
