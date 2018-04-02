@@ -41,7 +41,6 @@ public class NextPermutation {
 					i--;
 					j++;
 				}
-				
 			}
 			int k =n-1;
 			int pivotElem = ar.get(i-1);
@@ -62,6 +61,6 @@ public class NextPermutation {
 				j--;
 			}
 			
-	    }
+	    }   
 	}
 }	
