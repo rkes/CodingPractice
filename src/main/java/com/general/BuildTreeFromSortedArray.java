@@ -1,12 +1,17 @@
 package com.general;
 
+import java.util.ArrayList;
+
 public class BuildTreeFromSortedArray {
 
 	public static void main(String[] args) {
 		
 		int arr[] = new int[]{1, 2, 3, 4, 5, 6, 7};
         int n = arr.length;
-        TreeNode root = buildTree(arr, 0, n - 1);
+        ArrayList<Integer> lst = new ArrayList<Integer>();
+        for(int i=0;i<n;i++)
+        	lst.add(arr[i]);
+        TreeNode root = buildTree(lst, 0, lst.size()-1);
         System.out.println();
         inorderTravsersal(root);
         System.out.println();
@@ -27,14 +32,14 @@ public class BuildTreeFromSortedArray {
 			System.out.printf("%d\t",node.val);
 		}
 	}
-	public static TreeNode buildTree(int []ar,int start,int end){
+	public static TreeNode buildTree(ArrayList<Integer> lst,int start,int end){
 		if(start>end)
 			return null;
 		int mid = (start+end)/2;
-		int elem = ar[mid];
+		int elem = lst.get(mid);
 		TreeNode node = new TreeNode(elem);
-		node.left = buildTree(ar,start,mid-1);
-		node.right = buildTree(ar,mid+1,end);
+		node.left = buildTree(lst,start,mid-1);
+		node.right = buildTree(lst,mid+1,end);
 		return node;
 	}
 }
