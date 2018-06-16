@@ -6,7 +6,7 @@ public class BuildTreeFromSortedArray {
 
 	public static void main(String[] args) {
 		
-		int arr[] = new int[]{1, 2, 3, 4, 5, 6, 7};
+		int arr[] = new int[]{1, 2};
         int n = arr.length;
         ArrayList<Integer> lst = new ArrayList<Integer>();
         for(int i=0;i<n;i++)
@@ -42,4 +42,12 @@ public class BuildTreeFromSortedArray {
 		node.right = buildTree(lst,mid+1,end);
 		return node;
 	}
+	 /* if(start > end)
+          return null;
+      int mid = (start+end)/2;
+      int val = a.get(mid);
+      TreeNode node = new TreeNode(mid);
+      node.left = buildTree(a,start,mid-1);
+      node.right = buildTree(a,mid+1,end);
+      return node;*/
 }
