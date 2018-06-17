@@ -6,4 +6,13 @@ public class Node {
 	public Node(int data){
 		this.data = data;
 	}
+	public String toString(){
+		Node temp = this;
+		StringBuilder stringBuilder = new StringBuilder(temp.data);
+		while(temp!=null){
+			stringBuilder.append(temp.data+"     ");
+			temp = temp.next;
+		}
+		return stringBuilder.toString();
+	}
 }
