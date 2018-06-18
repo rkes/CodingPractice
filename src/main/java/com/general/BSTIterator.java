@@ -8,12 +8,13 @@ public class BSTIterator {
 		addALL(node);
 	}
 	public TreeNode next(){
-		TreeNode nde  = stck.pop();
+		TreeNode temp  = stck.pop();
+		TreeNode nde = temp;
 		if(nde.right!=null){
 			nde = nde.right;
 			addALL(nde);
 		}
-		return nde;
+		return temp;
 	}
 	public boolean hasNext(){
 		return !stck.isEmpty();
