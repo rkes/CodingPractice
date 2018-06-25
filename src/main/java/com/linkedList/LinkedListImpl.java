@@ -62,4 +62,17 @@ public class LinkedListImpl {
 		} 
 		return root;
 	}
+	public Node getKthNodeFromLast(Node root , int k){
+		Node temp = root,slow = root;int cnt =0;
+		while(temp!=null){
+			if(cnt < k){
+				temp = temp.next;
+				cnt++;
+				continue;
+			}
+			slow= slow.next;
+			temp = temp.next;
+		}
+		return slow;
+	}
 }

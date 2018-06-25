@@ -15,8 +15,10 @@ public class LinkedListTest {
 		root = linkedListImpl.addNode(root, 2);
 		root = linkedListImpl.addNode(root, 1);
 		/* root = linkedListImpl.addNode(root, 6); */
-		// linkedListImpl.traverseNode(root);
+		linkedListImpl.traverseNode(root);
 		System.out.println();
+		System.out.println(linkedListImpl.getKthNodeFromLast(root, 2).data);
+		
 		// Node revRoot = linkedListImpl.reverseLinkedList(root);
 		/*
 		 * Node pairRev = linkedListImpl.pairwiseReverse(root); Node revRoot2
