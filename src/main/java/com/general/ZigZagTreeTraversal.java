@@ -6,16 +6,19 @@ import java.util.List;
 public class ZigZagTreeTraversal {
 
 	public static void main(String[] args) {
-		TreeNode trNode = new TreeNode(10);
+		TreeNode trNode = new TreeNode(1);
 		trNode.left = new TreeNode(7);
 		trNode.left.left = new TreeNode(6);
 		trNode.left.right = new TreeNode(9);
 		trNode.left.left.left = new TreeNode(5);
-		trNode.right = new TreeNode(15);
-		trNode.right.left = new TreeNode(13);
-		trNode.right.right = new TreeNode(16);
-		trNode.right.left.right = new TreeNode(12);
-		trNode.right.left.left = new TreeNode(12);
+		
+		trNode.right = new TreeNode(0);
+		trNode.right.left = new TreeNode(2);
+		trNode.right.right = new TreeNode(6);
+		trNode.right.left.right = new TreeNode(8);
+		trNode.right.left.left = new TreeNode(5);
+		printPath(trNode, "");
+		System.out.println(sum);
 		// printZigZag(trNode);
 		/*
 		 * System.out.println("55 : " + checkPathSum(trNode, 55));
@@ -36,7 +39,23 @@ public class ZigZagTreeTraversal {
 			return 0;
 		return Math.max(getHeightofTree(trNode.left), getHeightofTree(trNode.right)) + 1;
 	}
-
+	static Integer sum =0;
+	public static void printPath(TreeNode trNode,String str){
+		if(trNode == null)
+			return ;
+		if(trNode.left==null && trNode.right==null){
+			System.out.println(str+""+trNode.val);
+			String s = str+trNode.val;
+			sum = sum +Integer.parseInt(s);
+			return ;
+		}
+		else{
+			printPath(trNode.left, str+trNode.val);
+			printPath(trNode.right, str+trNode.val);
+			if(str.length()>0)
+			str=str.substring(0,str.length()-1);
+		}
+	}
 	public static void printZigZag(TreeNode trNode) {
 		int height = getHeightofTree(trNode);
 		boolean left = true;
@@ -111,6 +130,32 @@ public class ZigZagTreeTraversal {
 			if (node.right != null)
 				ans = ans || haspathSum(node.right, subsum);
 			return ans;
+		}
+	}
+	static class Solution {
+	    public ArrayList<ArrayList<Integer>> pathSum(TreeNode root, int sum) {
+	         ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
+			 printPath(root,sum,0,result,new ArrayList<>());
+			 return result;
+	    }
+	    void printPath(TreeNode node, int sum, int cnt, ArrayList<ArrayList<Integer>> result, List<Integer> path) {
+			if (node == null) {
+				return;
+			}
+			if (node.left==null && node.right==null && node.val+cnt == sum) {
+				path.add(node.val);
+	            ArrayList<Integer> temp = new ArrayList<>();
+	            for(int i=0;i<path.size();i++){
+	                temp.add(path.get(i));
+	            }
+				result.add(temp);
+				path.remove(path.size() - 1);
+				return;
+			}
+			path.add(node.val);
+			printPath(node.left, sum, cnt + node.val, result,path);
+			printPath(node.right, sum, cnt + node.val, result, path);
+			path.remove(path.size() - 1);
 		}
 	}
 }
