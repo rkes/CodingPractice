@@ -1,0 +1,1 @@
+ $JBOSS_HOME/bin/jboss-cli.sh --connect controller=devapp787cn.netcracker.com:11318 --user=wlsadmin --password=wlsadmin123 --command="/host=master/server=server-one/core-service=platform-mbean/type=runtime:read-attribute(name=system-properties)"
